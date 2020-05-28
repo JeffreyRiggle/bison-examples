@@ -2,18 +2,25 @@ const bodyParser = require('body-parser');
 const { encode, decode } = require('@jeffriggle/bison/dist/cjs');
 
 const handleBison = (req, res, next) => {
-    console.log('Got request with content type', req.headers['content-type'])
     if (req.headers['content-type'] !== 'application/bison') {
         next();
         return;
     }
 
-    req.body = decode(req.body);
+    if (req.rawBody) {
+        req.body = decode(req.rawBody);
+    }
+
     next();
 }
 
 const useBison = (app) => {
-    app.use(bodyParser.raw())
+    app.use(bodyParser.raw({type: 'application/bison', verify: (req, res, buf, encoding) => {
+        if (buf && buf.length) {
+            req.rawBody = buf;
+        }
+    }}));
+
     app.use(handleBison);
 }
 
