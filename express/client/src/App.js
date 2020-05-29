@@ -1,6 +1,6 @@
 import React from 'react';
 import { Post } from './Post';
-import { encode } from '@jeffriggle/bison/dist/esm/index';
+import { encode, decode } from '@jeffriggle/bison/dist/esm/index';
 import './App.css';
 
 function App() {
@@ -10,43 +10,60 @@ function App() {
   const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
-    const req = new Request('http://localhost:4040/posts', {
-      method: 'GET'
+    const req = new Request('http://localhost:3000/posts', {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/bison',
+        'Accept': 'application/bison'
+      }
     });
 
     fetch(req).then(res => {
-      setPosts(res);
+      res.arrayBuffer().then(buff => {
+        const result = decode(Buffer(buff)) || {}
+
+        const posts = []
+        Object.keys(result).forEach(key => {
+          posts.push(result[key]);
+        });
+
+        setPosts(posts);
+      });
     });
-  }, []);
+  }, [drafting]);
 
   function sendPost(post) {
-    const req = new Request('http://localhost:4040/posts', {
+    const req = new Request('http://localhost:3000/posts/create', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/bison'
+        'Content-Type': 'application/bison',
+        'Accept': 'application/bison'
       },
       body: encode(post)
     });
 
     fetch(req).finally(() => {
       setDrafing(false);
+      setDraftBody('');
+      setDraftTitle('');
     })
   }
 
   return (
     <div className="App">
+      { 
+        posts.map(post => {
+          return <Post key={post.id} {...post} />
+        })
+      }
+
       { !drafting && (
         <button onClick={() => {
           setDrafing(true);
         }}>Create Post</button>
       )}
-
-      { 
-        posts.map(post => {
-          return <Post {...post} />
-        })
-      }
-
+  
       { drafting && (
         <>
           <div>

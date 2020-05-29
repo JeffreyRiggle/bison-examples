@@ -6,14 +6,15 @@ const app = express();
 useBison(app);
 
 app.get('/posts', (req, res) => {
-    console.log('Got posts request')
     res.status(200);
     sendBison(res, getPosts())
 });
 
-app.post('/posts', (req, res) => {
-    console.log('Got create posts request')
-    addPost(req);
+app.post('/posts/create', (req, res) => {
+    addPost({
+        body: req.body.body,
+        title: req.body.title
+    });
     res.status(201).end();
 });
 
