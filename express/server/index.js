@@ -1,6 +1,6 @@
 const express = require('express');
 const { getPosts, addComment, addPost, likeComment, likePost } = require('./postManager');
-const { useBison, sendBison } = require('./bisonHandler');
+const { useBison, sendBison } = require('@jeffriggle/bison-express');
 const app = express();
 
 useBison(app);
