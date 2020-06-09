@@ -1,24 +1,18 @@
-import { w3cwebsocket as WebSocket } from 'websocket';
-import { encode } from '@jeffriggle/bison/dist/esm/index';
+import { decode, encode } from '@jeffriggle/bison/dist/esm/index';
 
 const client = new WebSocket('ws://localhost:5000/', 'bison-stream');
 
-client.onerror = () => {
-    console.log('Connection Error!');
-}
-
-client.onopen = () => {
+client.addEventListener('open', () => {
     console.log('Connection to server is open');
-}
+});
 
-client.onclose = () => {
-    console.log('Connection has been closed');
-}
+client.addEventListener('message', (event) => {
+    event.data.arrayBuffer().then(buff => {
+      const result = decode(Buffer(buff)) || {}
 
-client.onmessage = (event) => {
-    const blob = new Blob(event.data);
-    console.log('Got event ', event);
-}
+      console.log(result);
+    });
+});
 
 export const sendMessage = (message) => {
     client.send(encode({ type: 1, message }))
