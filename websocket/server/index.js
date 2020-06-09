@@ -26,7 +26,7 @@ wsServer.on('request', req => {
             const sendData = encode([{ time: Date.now(), message: 'foobar' } ])
             connection.sendBytes(sendData)
         } else if (data.type === 1) {
-            console.log('Sending bytes ', sendData)
+            const sendData = encode({ status: 'Success' })
             connection.sendBytes(sendData)
         }
     })
