@@ -1084,10 +1084,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@jeffriggle/bison@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@jeffriggle/bison/-/bison-1.0.4.tgz#c2e2ffd8a27ef7bce380e60cf85c467efbe32e10"
-  integrity sha512-rmIpy9PmBMuUYtZNsO5X1HZsmg0K8jeRrGhyWg15GLEoXw5noU3rsxqibjLiwhHcyxXyknbR8VD0kVmndM0IGQ==
+"@jeffriggle/bison@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@jeffriggle/bison/-/bison-1.0.5.tgz#599573ded035aafd6f2c07fef95aa77c1c46ac11"
+  integrity sha512-ExrXU4vB2mBhkIryC/HXVyJ4W7IOJHhKrZsc8eyxcpQJxP7jxBlZAB24Wq0c4mDeW9kv6gVSgvvqPJqsoXFbYw==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
