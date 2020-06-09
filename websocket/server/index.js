@@ -1,6 +1,7 @@
 const WebSocketServer = require('websocket').server
 const http = require('http')
 const { encode, decode } = require('@jeffriggle/bison/dist/cjs')
+const { addMessage, getMessages } = require('./messageStore')
 
 const server = http.createServer((req, res) => {
     console.log('Got request for ', req.url)
@@ -23,10 +24,15 @@ wsServer.on('request', req => {
         const data = decode(message.binaryData);
 
         if (data.type === 0) {
-            const sendData = encode([{ time: Date.now(), message: 'foobar' } ])
-            connection.sendBytes(sendData)
+            connection.sendBytes({
+                messages: getMessages()
+            })
         } else if (data.type === 1) {
-            const sendData = encode({ status: 'Success' })
+            addMessage(data.message)
+            const sendData = encode({ 
+                status: 'Success',
+                messages: getMessages()
+            })
             connection.sendBytes(sendData)
         }
     })

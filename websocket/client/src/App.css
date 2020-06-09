@@ -35,3 +35,13 @@
     transform: rotate(360deg);
   }
 }
+
+.Message-Area {
+  margin: 24px;
+}
+
+.Message-Area textarea {
+  width: 50%;
+  height: 400px;
+  resize: none;
+}
