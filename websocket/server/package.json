@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@jeffriggle/bison": "^1.0.5",
+    "@jeffriggle/bison": "^1.0.8",
     "websocket": "^1.0.31"
   }
 }

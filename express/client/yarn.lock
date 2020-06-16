@@ -1084,10 +1084,12 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@jeffriggle/bison@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@jeffriggle/bison/-/bison-1.0.5.tgz#599573ded035aafd6f2c07fef95aa77c1c46ac11"
-  integrity sha512-ExrXU4vB2mBhkIryC/HXVyJ4W7IOJHhKrZsc8eyxcpQJxP7jxBlZAB24Wq0c4mDeW9kv6gVSgvvqPJqsoXFbYw==
+"@jeffriggle/bison@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@jeffriggle/bison/-/bison-1.0.8.tgz#645118df1c2d4fa256b5660f9e11629a045631cf"
+  integrity sha512-32w1lCJmcr8eMr0qMYGXFJYNhOOUogHxT9jU1+35Iy+kDSQN6awfJVaATKRiVhQjppAVcOISXLNgefSwHh1pNw==
+  dependencies:
+    buffer "^5.6.0"
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
@@ -2561,6 +2563,14 @@ buffer@^4.3.0:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
     isarray "^1.0.0"
+
+buffer@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.6.0.tgz#a31749dc7d81d84db08abf937b6b8c4033f62786"
+  integrity sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
 
 builtin-status-codes@^3.0.0:
   version "3.0.0"

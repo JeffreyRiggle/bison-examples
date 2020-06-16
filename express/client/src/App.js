@@ -1,6 +1,6 @@
 import React from 'react';
 import { Post } from './Post';
-import { encode, decode } from '@jeffriggle/bison/dist/esm/index';
+import bison from '@jeffriggle/bison/dist/esm/index';
 import './App.css';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
     fetch(req).then(res => {
       res.arrayBuffer().then(buff => {
-        const result = decode(Buffer(buff)) || {}
+        const result = bison.decode(Buffer(buff)) || {}
 
         const posts = []
         Object.keys(result).forEach(key => {
@@ -40,7 +40,7 @@ function App() {
         'Content-Type': 'application/bison',
         'Accept': 'application/bison'
       },
-      body: encode(post)
+      body: bison.encode(post)
     });
 
     fetch(req).finally(() => {

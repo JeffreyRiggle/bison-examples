@@ -1,4 +1,4 @@
-import { decode, encode } from '@jeffriggle/bison/dist/esm/index';
+import bison from '@jeffriggle/bison/dist/esm/index';
 
 let messageListener;
 const client = new WebSocket('ws://localhost:5000/', 'bison-stream');
@@ -9,7 +9,7 @@ client.addEventListener('open', () => {
 
 client.addEventListener('message', (event) => {
     event.data.arrayBuffer().then(buff => {
-      const result = decode(Buffer(buff)) || {}
+      const result = bison.decode(Buffer(buff)) || {}
 
       if (result.messages && result.messages.length && messageListener) {
         messageListener(result.messages);
@@ -18,11 +18,11 @@ client.addEventListener('message', (event) => {
 });
 
 export const sendMessage = (message) => {
-    client.send(encode({ type: 1, message }))
+    client.send(bison.encode({ type: 1, message }))
 }
 
 export const getMessages = () => {
-    client.send(encode({ type: 0 }));
+    client.send(bison.encode({ type: 0 }));
 }
 
 export const setMessageListener = (listener) => {
