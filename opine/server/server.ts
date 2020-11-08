@@ -1,5 +1,5 @@
 import opine from 'https://deno.land/x/opine@master/mod.ts'
-import bison from 'https://unpkg.com/@jeffriggle/bison@1.0.10/dist/esm/index.js'
+import bison from 'https://unpkg.com/@jeffriggle/bison@2.0.0/dist/esm/index.js'
 
 const app = opine();
 
